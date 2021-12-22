@@ -46,3 +46,8 @@ aspectRatio: 2,
 
 Or fixed height & width with `resizeMode` prop e.g. `resizeMode="contain"` maintains aspect ratio of original.
 
+### Image Background
+https://reactnative.dev/docs/imagebackground
+
+react-native-fast-image for images loaded via url - perf optimizations (cache, preload etc.)
+https://github.com/DylanVann/react-native-fast-image
