@@ -5,7 +5,7 @@ import { MoodPicker } from '../components/MoodPicker';
 export const Home: React.FC = () => {
   return (
     <View style={styles.container}>
-      <MoodPicker />
+      <MoodPicker onSelect={() => 'placeholder prop'} />
     </View>
   );
 };
