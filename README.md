@@ -21,3 +21,28 @@ protected void onCreate(Bundle savedInstanceState) {
 
 `cd ios && pod install`
 
+
+## Adding Storage
+https://react-native-async-storage.github.io/async-storage/docs/api/
+(can only store serializable things!)
+
+`yarn add @react-native-async-storage/async-storage`
+
+Requires: `cd ios && pod install && cd ..`
+
+## Adding Images
+ "display points" -> relative depending on screen size.
+e.g. `width: (10 * pixel_density)px`
+- best practice to include images at 3 sizes to support different screen resolutions 
+- e.g. `/assets/myPic@2x.png`
+
+By default, images are sized based on resolution of main image file. 
+Custom: width, height and aspectRatio 
+```
+height: 100,
+aspectRatio: 2,
+```
+
+
+Or fixed height & width with `resizeMode` prop e.g. `resizeMode="contain"` maintains aspect ratio of original.
+
