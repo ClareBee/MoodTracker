@@ -51,3 +51,12 @@ https://reactnative.dev/docs/imagebackground
 
 react-native-fast-image for images loaded via url - perf optimizations (cache, preload etc.)
 https://github.com/DylanVann/react-native-fast-image
+
+### SVG
+https://github.com/react-native-svg/react-native-svg
+```
+yarn add react-native-svg
+cd ios && pod install && cd ..
+```
+
+SVG conversion: https://react-svgr.com/playground/
