@@ -59,11 +59,11 @@ export const AppProvider: React.FC = ({ children }) => {
   const handleDeleteMood = React.useCallback(
     (mood: MoodOptionWithTimestamp) => {
       setMoodList(current => {
-        const newValue = current.filter(
+        const newMoodItems = current.filter(
           item => item.timestamp !== mood.timestamp,
         );
-        setAppData({ moods: newValue });
-        return newValue;
+        setAppData({ moods: newMoodItems });
+        return newMoodItems;
       });
     },
     [],

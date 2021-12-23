@@ -81,5 +81,38 @@ module.exports = {
 `npx react-native link` (copies files over to /ios and /android)
 Then rebuild app.
 
+## Animation
+### LayoutAnimation - 
+From: https://reactnative.dev/docs/layoutanimation
+> Automatically animates views to their new positions when the next layout happens.
 
-  
+> A common way to use this API is to call it before updating the state hook in functional components 
+> Note that in order to get this to work on Android you need to set the following flags via UIManager:
+```javascript
+// App.tsx
+
+if (Platform.OS === 'android') {
+  if (UIManager.setLayoutAnimationEnabledExperimental) {
+    UIManager.setLayoutAnimationEnabledExperimental(true);
+  }
+}
+``` 
+- Still 'experimental' in Android, so double-check
+
+### Reanimated 2
+https://docs.swmansion.com/react-native-reanimated/docs/
+
+> Reanimated is a React Native library that allows for creating smooth animations and interactions that runs on the UI thread.
+> Reanimated aims to provide ways of offloading animation and event handling logic off of the JavaScript thread and onto the UI thread. This is achieved by defining Reanimated worklets – a tiny chunks of JavaScript code that can be moved to a separate JavaScript VM and executed synchronously on the UI thread. This makes it possible to respond to touch events immediately and update the UI within the same frame when the event happens without worrying about the load that is put on the main JavaScript thread.
+
+`yarn add react-native-reanimated@next`
+
+Add as the **last** plugin:
+```javascript
+// babel.config.js
+module.exports = {
+  presets: ['module:metro-react-native-babel-preset'],
+  plugins: ['react-native-reanimated/plugin'],
+};
+```
+Hermes - RN's JS runtime
