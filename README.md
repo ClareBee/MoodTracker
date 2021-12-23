@@ -1,5 +1,23 @@
+# Course: React Native Beyond Basics, Kadi Kraman, Frontend Masters
 
-https://www.typescriptlang.org/tsconfig
+https://kadikraman.github.io/react-native-beyond-basics/
+
+Details: React Native with TypeScript
+Topics: 
+- Bottom Navigation 
+- JS & native libraries 
+- Context 
+- AsyncStorage 
+- Images & SVGs 
+- Custom fonts 
+- LayoutAnimation & Reanimated 2 
+- App icons 
+- Splash Screens 
+- Data visualisation w Victory Native
+  
+----
+
+# Learning Notes:
 
 ## Adding Navigation
 
@@ -9,7 +27,7 @@ https://www.typescriptlang.org/tsconfig
 `react-native-screens` has extra step: `android/app/src/main/java/moodtracker/MainActivity.java`
 
 MainActivity class:
-```
+```java
 import android.os.Bundle;
 //
 @Override
@@ -21,6 +39,7 @@ protected void onCreate(Bundle savedInstanceState) {
 
 `cd ios && pod install`
 
+---
 
 ## Adding Storage
 https://react-native-async-storage.github.io/async-storage/docs/api/
@@ -29,6 +48,8 @@ https://react-native-async-storage.github.io/async-storage/docs/api/
 `yarn add @react-native-async-storage/async-storage`
 
 Requires: `cd ios && pod install && cd ..`
+
+---
 
 ## Adding Images
  "display points" -> relative depending on screen size.
@@ -43,14 +64,17 @@ height: 100,
 aspectRatio: 2,
 ```
 
-
 Or fixed height & width with `resizeMode` prop e.g. `resizeMode="contain"` maintains aspect ratio of original.
+
+---
 
 ### Image Background
 https://reactnative.dev/docs/imagebackground
 
 react-native-fast-image for images loaded via url - perf optimizations (cache, preload etc.)
 https://github.com/DylanVann/react-native-fast-image
+
+---
 
 ### SVG
 https://github.com/react-native-svg/react-native-svg
@@ -60,6 +84,8 @@ cd ios && pod install && cd ..
 ```
 
 SVG conversion: https://react-svgr.com/playground/
+
+---
 
 ## Fonts
 https://fonts.google.com/
@@ -80,6 +106,8 @@ module.exports = {
 ```
 `npx react-native link` (copies files over to /ios and /android => run when the dependency contains native code)
 Then rebuild app.
+
+---
 
 ## Animation
 ### LayoutAnimation - 
@@ -119,11 +147,13 @@ Hermes - RN's JS runtime
 
 Android:
 1. `android/app/build.gradle`:
+2. 
 ```javascript
 project.ext.react = [
   enableHermes: true // <- here | clean and rebuild if changing
 ]
 ```
+
 2. `MainApplication.java`
 ```java
 import com.facebook.react.bridge.JSIModulePackage; // <- add
@@ -149,11 +179,11 @@ iOS:
 
 Restart & blitz cache: `yarn start --reset-cache`
 
-Examples:
-useAnimatedStyle: 
+### Examples:
+**useAnimatedStyle:** 
 https://docs.swmansion.com/react-native-reanimated/docs/api/hooks/useAnimatedStyle/
 
-withTiming:
+**withTiming:**
 https://docs.swmansion.com/react-native-reanimated/docs/api/animations/withTiming/
 
 Only Reanimated components can use animated styles:
@@ -163,6 +193,7 @@ import Reanimated from 'react-native-reanimated';
 const ReanimatedPressable = Reanimated.createAnimatedComponent(Pressable);
 ```
 
+---
 ## Gestures
 React Native Gesture Handler: https://docs.swmansion.com/react-native-gesture-handler/docs/
 > The motivation for building this library was to address the performance limitations of React Native's Gesture Responder System and to provide more control over the built-in native components that can handle gestures. We recommend this talk by Krzysztof Magiera in which he explains issues with the responder system.
@@ -213,12 +244,12 @@ public class MainActivity extends ReactActivity {
 }
 ```
 
-PanGestureHandler (dragging event):
+**PanGestureHandler (dragging event):**
 e.g. https://docs.swmansion.com/react-native-gesture-handler/docs/next/gesture-handlers/api/pan-gh/
 
-
+---
 ## App Icon
-iOS: 
+### iOS: 
 1024 x 1024px image,
 https://raphaelhanneken.com/iconizer/
 Delete AppIcon template & drag-and-drop folder to Images section of XCode
@@ -226,7 +257,7 @@ Close simulator (deal w cache)
 
 Click on top level folder on XCode => General tab => set display name etc.
 
-Android:
+### Android:
 Android Studio app -> res -> mipmap -> ic_launcher
 
 Android Asset Studio:
@@ -241,7 +272,7 @@ Hit next -> finish to create icons.
 
 To change App Name, open android/app/src/main/res/values/strings.xml & update app_name
 
-
+---
 ## Splash Screen
 iOS:
 - Open Xcode & find LaunchScreen.storyboard
@@ -305,7 +336,14 @@ public class MainActivity extends ReactActivity {
 }
 ```
 
+---
 ## Data Visualisation
 Victory Native:
 `yarn add victory-native`
 (also needs RN SVG - but no additional native dependencies)
+
+---
+
+## Extras
+https://github.com/junina-de/react-native-haptic-feedback
+https://github.com/zmxv/react-native-sound
