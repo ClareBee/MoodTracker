@@ -2,19 +2,35 @@
 
 https://kadikraman.github.io/react-native-beyond-basics/
 
-Details: React Native with TypeScript
-Topics: 
-- Bottom Navigation 
-- JS & native libraries 
-- Context 
-- AsyncStorage 
-- Images & SVGs 
-- Custom fonts 
-- LayoutAnimation & Reanimated 2 
-- App icons 
-- Splash Screens 
-- Data visualisation w Victory Native
+## Details: React Native with TypeScript
+
+<table>
+  <tr>
+     <td>
+       <strong>Topics:</strong>
+       <ul>
+         <li>Bottom Navigation</li> 
+         <li>JS & native libraries</li> 
+         <li>Context</li>
+         <li>AsyncStorage</li>
+         <li>Images & SVGs</li> 
+         <li>Custom fonts</li> 
+         <li>LayoutAnimation & Reanimated 2</li>
+         <li>App icons</li> 
+         <li>Splash Screens</li> 
+         <li>Data visualisation w Victory Native</li>
+       </ul>
+    </td>
+    <td>
+    <img src="https://github.com/ClareBee/MoodTracker/blob/main/screenshot.png" data-canonical-src="https://github.com/ClareBee/MoodTracker/blob/main/screenshot.png" width="200" height="400" />
+    </td>
+  </tr>
+ </table>
+
   
+
+
+
 ----
 
 # Learning Notes:
@@ -261,14 +277,11 @@ Click on top level folder on XCode => General tab => set display name etc.
 Android Studio app -> res -> mipmap -> ic_launcher
 
 Android Asset Studio:
-Right click on the "res" directory: new -> "image asset".
-Foreground Layer tab, select asset patch to be icon.
-
-Scaling section, select "Yes" under Trim, & use slider to resize icon to fit.
-
-I"Background Layer" tab, under "Source Asset", choose "Color" for the "Asset Type" & set background.
-
-Hit next -> finish to create icons.
+- Right click on the "res" directory: new -> "image asset".
+- Foreground Layer tab, select asset patch to be icon.
+- Scaling section, select "Yes" under Trim, & use slider to resize icon to fit.
+- "Background Layer" tab, under "Source Asset", choose "Color" for the "Asset Type" & set background.
+- Hit next -> finish to create icons.
 
 To change App Name, open android/app/src/main/res/values/strings.xml & update app_name
 
