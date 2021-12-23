@@ -60,3 +60,26 @@ cd ios && pod install && cd ..
 ```
 
 SVG conversion: https://react-svgr.com/playground/
+
+## Fonts
+https://fonts.google.com/
+
+Fonts treated differently in iOS and Android.
+- Android, fontFamily = name of file.
+- iOS apps, fontFamily = PostScript name of font. To check PostScript name, double-click on .tff file on a Mac => Choose install font, click on i (information) icon 
+
+**i.e. font files should be named after the PostScript name!**
+
+`/assets/fonts`
+
+`react-native.config.js`
+```javascript
+module.exports = {
+  assets: ['./assets/fonts'],
+};
+```
+`npx react-native link` (copies files over to /ios and /android)
+Then rebuild app.
+
+
+  

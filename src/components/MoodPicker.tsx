@@ -108,10 +108,9 @@ const styles = StyleSheet.create({
   },
   heading: {
     fontSize: 20,
-    fontWeight: 'bold',
+    fontFamily: theme.fontFamilyBold,
     letterSpacing: 1,
     textAlign: 'center',
-    marginBottom: 20,
     color: theme.colorWhite,
   },
   button: {
@@ -125,7 +124,7 @@ const styles = StyleSheet.create({
   buttonText: {
     color: theme.colorWhite,
     textAlign: 'center',
-    fontWeight: 'bold',
+    fontFamily: theme.fontFamilyBold,
   },
   image: {
     alignSelf: 'center',
