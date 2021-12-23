@@ -224,4 +224,83 @@ https://raphaelhanneken.com/iconizer/
 Delete AppIcon template & drag-and-drop folder to Images section of XCode
 Close simulator (deal w cache)
 
+Click on top level folder on XCode => General tab => set display name etc.
+
+Android:
+Android Studio app -> res -> mipmap -> ic_launcher
+
+Android Asset Studio:
+Right click on the "res" directory: new -> "image asset".
+Foreground Layer tab, select asset patch to be icon.
+
+Scaling section, select "Yes" under Trim, & use slider to resize icon to fit.
+
+I"Background Layer" tab, under "Source Asset", choose "Color" for the "Asset Type" & set background.
+
+Hit next -> finish to create icons.
+
+To change App Name, open android/app/src/main/res/values/strings.xml & update app_name
+
+
 ## Splash Screen
+iOS:
+- Open Xcode & find LaunchScreen.storyboard
+- Images.xcassets and add a new Image Set called SplashImage.
+- To ensure that the image is always centered in our container, select the image and then click on the triangle icon on the top menu. Under Autoresizing change the window with the arrows, so it looks like in the screenshot below. All outer arrows should be deselected and all inner arrows selected.
+
+To stop 'white flash':
+```bash
+yarn add react-native-splash-screen
+npx react-native link react-native-splash-screen // links native dependencies
+cd ios && pod install && cd .. // install native dependencies
+```
+ 
+ iOS:
+ AppDelegate.m in XCode
+ ```swift
+#import "AppDelegate.h"
+
+#import <React/RCTBundleURLProvider.h>
+#import <React/RCTRootView.h>
++#import "RNSplashScreen.h"
+
+@implementation AppDelegate
+
+ (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    // ...other code
+
++    [RNSplashScreen show];
+
+    return YES;
+}
+
+@end
+```
+App.tsx: hide screen on mount
+```javascript
+import SplashScreen from 'react-native-splash-screen';
+
+export const App: React.FC = () => {
+  React.useEffect(() => {
+    SplashScreen.hide();
+  }, []);
+ ...
+};
+```
+
+Android:
+Update the MainActivity.java to use react-native-splash-screen via the following changes:
+
+```java
++import android.os.Bundle;
++import org.devio.rn.splashscreen.SplashScreen;
+
+public class MainActivity extends ReactActivity {
+   @Override
+    protected void onCreate(Bundle savedInstanceState) {
++        SplashScreen.show(this);
+        super.onCreate(savedInstanceState);
+    }
+}
+```
