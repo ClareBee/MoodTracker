@@ -212,3 +212,16 @@ public class MainActivity extends ReactActivity {
 +  }
 }
 ```
+
+PanGestureHandler (dragging event):
+e.g. https://docs.swmansion.com/react-native-gesture-handler/docs/next/gesture-handlers/api/pan-gh/
+
+
+## App Icon
+iOS: 
+1024 x 1024px image,
+https://raphaelhanneken.com/iconizer/
+Delete AppIcon template & drag-and-drop folder to Images section of XCode
+Close simulator (deal w cache)
+
+## Splash Screen
