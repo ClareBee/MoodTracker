@@ -78,7 +78,7 @@ module.exports = {
   assets: ['./assets/fonts'],
 };
 ```
-`npx react-native link` (copies files over to /ios and /android)
+`npx react-native link` (copies files over to /ios and /android => run when the dependency contains native code)
 Then rebuild app.
 
 ## Animation
@@ -116,3 +116,99 @@ module.exports = {
 };
 ```
 Hermes - RN's JS runtime
+
+Android:
+1. `android/app/build.gradle`:
+```javascript
+project.ext.react = [
+  enableHermes: true // <- here | clean and rebuild if changing
+]
+```
+2. `MainApplication.java`
+```java
+import com.facebook.react.bridge.JSIModulePackage; // <- add
+import com.swmansion.reanimated.ReanimatedJSIModulePackage; // <- add 
+private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
+...
+
+    @Override
+    protected String getJSMainModuleName() {
+      return "index";
+    }
+
+    @Override
+    protected JSIModulePackage getJSIModulePackage() {
+      return new ReanimatedJSIModulePackage(); // <- add
+    }
+  };
+...
+```
+
+iOS:
+- install native dependencies: `cd ios && pod install && cd ..`
+
+Restart & blitz cache: `yarn start --reset-cache`
+
+Examples:
+useAnimatedStyle: 
+https://docs.swmansion.com/react-native-reanimated/docs/api/hooks/useAnimatedStyle/
+
+withTiming:
+https://docs.swmansion.com/react-native-reanimated/docs/api/animations/withTiming/
+
+Only Reanimated components can use animated styles:
+```javascript
+import Reanimated from 'react-native-reanimated';
+
+const ReanimatedPressable = Reanimated.createAnimatedComponent(Pressable);
+```
+
+## Gestures
+React Native Gesture Handler: https://docs.swmansion.com/react-native-gesture-handler/docs/
+> The motivation for building this library was to address the performance limitations of React Native's Gesture Responder System and to provide more control over the built-in native components that can handle gestures. We recommend this talk by Krzysztof Magiera in which he explains issues with the responder system.
+
+`yarn add react-native-gesture-handler`
+
+`index.js` as **first line**:
+```javascript
+import 'react-native-gesture-handler';
+```
+Docs:
+After installation, wrap entry point with <GestureHandlerRootView> or gestureHandlerRootHOC.
+
+```javascript
+export default function App() {
+  return <GestureHandlerRootView>{/* content */}</GestureHandlerRootView>;
+}
+```
+
+iOS:
+`cd ios && pod install`
+
+Android:
+>Update your MainActivity.java file, so that it overrides the method responsible for creating ReactRootView instance and then use the root view wrapper provided by this library. Do not forget to import ReactActivityDelegate, ReactRootView, and RNGestureHandlerEnabledRootView:
+
+```java
+package com.swmansion.gesturehandler.react.example;
+
+import com.facebook.react.ReactActivity;
++ import com.facebook.react.ReactActivityDelegate;
++ import com.facebook.react.ReactRootView;
++ import com.swmansion.gesturehandler.react.RNGestureHandlerEnabledRootView;
+public class MainActivity extends ReactActivity {
+
+  @Override
+  protected String getMainComponentName() {
+    return "MoodTracker";
+  }
++  @Override
++  protected ReactActivityDelegate createReactActivityDelegate() {
++    return new ReactActivityDelegate(this, getMainComponentName()) {
++      @Override
++      protected ReactRootView createRootView() {
++       return new RNGestureHandlerEnabledRootView(MainActivity.this);
++      }
++    };
++  }
+}
+```
